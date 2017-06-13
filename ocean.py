@@ -10,10 +10,13 @@ class Ocean:
 
     def __str__(self):
 
+        letters = 'ABCDEFGHIJ'
+        index = 0
         ocean = ''
         for line in self.board:
-            ocean += '|'
+            ocean += '{}'.format(index) +' |'
             line.insert(-1, '|')
+            index += 1
             for square in line:
                 ocean += str(square)
 
@@ -24,8 +27,7 @@ class Ocean:
 
         self.board = []
         for i in range(0, 10):
-            squares_list = []
+            self.board.append([])
             for j in range(0, 10):
-                squares_list.append(Square(i, j))
-            squares_list.append("\n")
-            self.board.append(temp_list)
+                self.board[i].append(Square(i, j))
+            self.board[i].append("\n")
