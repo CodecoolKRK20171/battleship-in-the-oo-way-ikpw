@@ -1,4 +1,4 @@
-# Class Square
+# Class Ship
   contains squares objects that togather creates ships
   Contains data necessary to make whole ship from separate square objects
 
