@@ -4,6 +4,7 @@ from ships import Ship
 from player import Player
 import os
 
+
 def choose_all_ships(ocean, player):
 
     ships_list = ['Carrier']#, 'Battleship', 'Cruiser', 'Submarine', 'Destroyer']
@@ -18,7 +19,7 @@ def choose_all_ships(ocean, player):
                 is_vertical = False
             else:
                 print('Wrong input')
-            player.add_ship(positions_on_board(ocean),choose_ship , is_vertical)
+            player.add_ship(positions_on_board(ocean), choose_ship, is_vertical)
         else:
             print("There is no such a ship")
 
@@ -36,7 +37,7 @@ def main_menu(player, ocean):
         elif choose == '0':
             break
         if choose.isalpha():
-            raise ValuError
+            raise ValueError
 
 
 def positions_on_board(ocean):
