@@ -4,18 +4,39 @@ from ships import Ship
 from player import Player
 import os
 
+def choose_all_ships(ocean, player):
 
-def main_menu(player):
+    ships_list = ['Carrier']#, 'Battleship', 'Cruiser', 'Submarine', 'Destroyer']
+    while len(ships_list) > 0:
+        choose_ship = input("Choose ship: ")
+        if choose_ship in ships_list:
+            ships_list.remove(choose_ship)
+            direction = input('What direction vertical or horizontal (v or h)')
+            if direction == 'v':
+                is_vertical = True
+            elif direction == 'h':
+                is_vertical = False
+            else:
+                print('Wrong input')
+            player.add_ship(positions_on_board(ocean),choose_ship , is_vertical)
+        else:
+            print("There is no such a ship")
+
+
+def main_menu(player, ocean):
     print('''
           (1) Start game
           (0) Exit game
             ''')
 
-    choose = input("Enter action")
-    if choose == '1':
-        player.add_ship(positions_on_board(), 3, True)
-    if choose.isalpha():
-        raise ValuError
+    while True:
+        choose = input("Enter action")
+        if choose == '1':
+            choose_all_ships(player, ocean)
+        elif choose == '0':
+            break
+        if choose.isalpha():
+            raise ValuError
 
 
 def positions_on_board(ocean):
@@ -39,6 +60,7 @@ def main():
     ocean.format_board()
     player = Player('Carrier', ocean)
     player.add_ship((2, 4), 'Carrier', True)
+    main_menu(ocean, player)
     while True:
         player.attack_position(positions_on_board(ocean))
 
