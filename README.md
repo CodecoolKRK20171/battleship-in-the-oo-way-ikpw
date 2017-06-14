@@ -11,18 +11,18 @@ It was invented by Emily and Maggie Laskey in 1915 and later published by variou
 
 The game contains following modules:
 
-__main.py__
+### __main.py__
 
 Controls all of the program using imported modules.
 
-__square.py__
+### __square.py__
 
 Contains class that makes parts of ships
 
-__ship.py__
+### __ship.py__
 
 Contains data necessary to make whole ship from separate square objects.
 
-__ocean.py__
+### __ocean.py__
 
 Creates boards for playing the game.
