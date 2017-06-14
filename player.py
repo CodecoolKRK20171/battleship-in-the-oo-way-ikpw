@@ -3,32 +3,31 @@ from squares import Square
 
 class Player:
 
-    ships = {"Carrier": 5,
-            "Battleship": 4,
-            "Cruiser": 3,
-            "Submarine": 3,
-            "Destroyer": 2}
-
-    def __init__(self, ship_name, ocean):
-
+    def __init__(self, name, ocean, enemy_ocean):
+        self.name = name
         self.ocean = ocean
-        self.size = Ship.ships[ship_name]
+        self.enemy_ocean = enemy_ocean
 
 
     def attack_position(self, positions):
-        self.ocean.board[positions[0]][positions[1]].fill_square()
+
+        if self.enemy_ocean.board[positions[0]][positions[1]].is_ship:
+            self.enemy_ocean.board[positions[0]][positions[1]].fill_square()
+        else:
+            self.enemy_ocean.board[positions[0]][positions[1]].fill_square()
 
 
     def add_ship(self, positions, size, is_vertical):
 
-        for i in range(self.size):
-            if is_vertical:
-                self.ocean.board[positions[1] + i][positions[0]].ship()
-            else:
-                self.ocean.board[positions[1]][positions[0] + i].ship()
+        try:
+            for i in range(size):
+                if not is_vertical:
+                    self.ocean.board[positions[0]][positions[1] + i].set_as_ship()
+                else:
+                    self.ocean.board[positions[0] + i][positions[1]].set_as_ship()
 
-        return positions
-
+        except IndexError:
+            print("Wrong coordinates!")
 
 
     def valid_position(self, name, coordinates):
@@ -36,5 +35,4 @@ class Player:
 
 
     def win_lose(self):
-
         pass
