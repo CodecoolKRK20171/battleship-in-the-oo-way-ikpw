@@ -41,17 +41,22 @@ def main_menu(player, ocean):
 
 def positions_on_board(ocean):
 
-    validate = '0123456789'
+    letters = {'A': 0, 'B': 1, 'C': 2, 'D': 3,
+                'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9}
     while True:
         print(ocean)
-        coordinate_x = input("Enter x: ")
-        coordinate_y = input("Enter y: ")
-        if coordinate_x not in validate and coordinate_y not in validate:
-            os.system('clear')
-            print("Wrong input")
-        else:
-            target = (int(coordinate_x), int(coordinate_y))
+        coordinate_x_y = input("Enter coordinates (a1): ")
+        try:
+            coordinate_x, coordinate_y = coordinate_x_y[0].upper(), int(coordinate_x_y[1])
+        except ValueError:
+            print("Wrong dupa")
+        except IndexError:
+            print("Wrong pierogi")
+        if coordinate_x in letters.keys() and coordinate_y in range(0, 10):
+            target = ((letters[coordinate_x]), int(coordinate_y) + 2)
             return target
+        else:
+            print("Wrong nic")
 
 
 def main():
