@@ -1,6 +1,5 @@
 from squares import Square
 
-
 class Ship:
 
    ships = {"Carrier": 5,
