@@ -17,14 +17,12 @@ class Ocean:
 
         return ocean
 
-    def attack_position(self, positions):
-
-        self.ocean.board[positions[0]][positions[1]].fill_square()
 
     def format_board(self):
+        """
+        Method that format board to have 10 lists with Square object as items
+        """
 
-        index = 0
-        letters = 'ABCDEFGHIJ'
         self.board = []
         for i in range(0, 10):
             self.board.append([])
@@ -33,9 +31,3 @@ class Ocean:
             self.board[i].append("\n")
 
         self.second_board = self.board[:]
-
-        #for line in self.second_board:
-            #line.insert(0, letters[index])
-            #line.insert(1, '|')
-            #line.append('|')
-            #index += 1

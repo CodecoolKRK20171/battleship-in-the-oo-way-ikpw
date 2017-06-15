@@ -4,7 +4,10 @@
 __Attributes__
 
 * data: bool
-  - 'is_picked': set to False or True if player picks given square
+  - 'is_water': sets everything to one char
+
+* data: bool
+  - 'is_ship': sets bool to true if specific square is part of ship
 
 * data: int
   - 'row': letters that are responsible for lines
@@ -22,3 +25,11 @@ Constructs Squares of diffrent ships
   * '__str__()'
 
 Returns formated string of one square ( x or 0)
+
+  * 'fill_square(self)'
+
+  set is_water to False than ship will be marked
+
+  * 'set_as_ship(self)'
+
+  set is_ship to true (that marks ship as X)

@@ -18,3 +18,5 @@ __instance methods__
     - creates nested list
   * '__str__(self)'
     - print board as lists formated to str
+  * 'format_board(self)'
+    - format board to have separate squares in every position

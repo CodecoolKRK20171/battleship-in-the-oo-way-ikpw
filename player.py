@@ -4,6 +4,7 @@ from squares import Square
 class Player:
 
     def __init__(self, name, ocean, enemy_ocean):
+
         self.name = name
         self.ocean = ocean
         self.enemy_ocean = enemy_ocean
@@ -23,10 +24,8 @@ class Player:
         None
         """
 
-        if self.enemy_ocean.board[positions[0]][positions[1]].is_ship:
-            self.enemy_ocean.board[positions[0]][positions[1]].fill_square()
-        else:
-            self.enemy_ocean.board[positions[0]][positions[1]].fill_square()
+        self.enemy_ocean.board[positions[0]][positions[1]].fill_square()
+
 
 
     def add_squares_around_horizontal(self, square_around_list, positions, size, is_horizontal):
@@ -134,8 +133,21 @@ class Player:
 
                     else:
                         return False
-
                 return True
+
+    # def frame_make(self, positions):
+    #
+    #     frame = []
+    #     for position in positions:
+    #         for x in range(-1, 2):
+    #             for y in range(-1, 2):
+    #                 add_block = (position[0] + x, position[1] + y)
+    #                 if add_block not in frame and add_block not in positions:
+    #                     frame.append(add_block)
+    #
+    #     return frame
+
+
 
 
     def is_win(self):
