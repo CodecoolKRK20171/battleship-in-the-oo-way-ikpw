@@ -20,10 +20,10 @@ def choose_all_ships(player):
     """
 
     ships = {"Carrier": 5}
-            "Battleship": 4,
-            "Cruiser": 3,
-            "Submarine": 3,
-            "Destroyer": 2}
+            #"Battleship": 4,
+            #"Cruiser": 3,
+            #"Submarine": 3,
+            #"Destroyer": 2}
 
     while len(ships.keys()) > 0:
         os.system('clear')
@@ -79,40 +79,24 @@ def set_positions_on_board():
            print(error_message)
 
 
-def change_turns(player1, player2):
+def change_turns(player):
     """
     Function that change turns of game from player one to player two
 
     Parameters
     ----------
-    player1: object with firs player data
-    player2: object with second player data
+    player: parameter with object of player
 
     Returns
     -------
     None
     """
 
-    while True:
-        print("Player1 turn")
-        player1.attack_position(set_positions_on_board())
-        print(player1.name, "board")
-        print(player1.ocean)
-        print(player1.enemy_ocean)
-        print(player2.name, "board")
-        print(player2.ocean)
-        print(player2.enemy_ocean)
-
-        print("Player2 turn")
-        player2.attack_position(set_positions_on_board())
-        print(player1.name, "board")
-        print(player1.ocean)
-        print(player1.enemy_ocean)
-        print(player2.name, "board")
-        print(player2.ocean)
-        print(player2.enemy_ocean)
-
-
+    player.attack_position(set_positions_on_board())
+    print("Your board")
+    print(player.ocean)
+    print("Enemy board")
+    print(player.enemy_ocean)
 
 
 def ask_name(player):
@@ -130,13 +114,15 @@ def main():
     ocean2.format_board()
     player1 = Player(ask_name('player1'), ocean1, ocean2)
     player2 = Player(ask_name('player2'), ocean2, ocean1)
-    player = 1
     choose_all_ships(player1)
     choose_all_ships(player2)
 
-    change_turns(player1, player2)
+    while True:
 
-
+        print("{} TURN".format(player1.name.upper()))
+        change_turns(player1)
+        print("{} TURN".format(player2.name.upper()))
+        change_turns(player2)
 
 
 if __name__ == "__main__":
