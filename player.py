@@ -1,4 +1,3 @@
-from ships import Ship
 from squares import Square
 
 class Player:
