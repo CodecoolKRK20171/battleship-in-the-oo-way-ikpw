@@ -19,8 +19,8 @@ def choose_all_ships(player):
     None
     """
 
-    ships = {"Carrier": 5}
-            #"Battleship": 4,
+    ships = {"Carrier": 5,
+            "Battleship": 4}
             #"Cruiser": 3,
             #"Submarine": 3,
             #"Destroyer": 2}
@@ -34,16 +34,16 @@ def choose_all_ships(player):
         choose_ship = input("Choose ship: ")
         if choose_ship in ships.keys():
             size = ships[choose_ship]
-            del ships[choose_ship]
-            direction = input('What direction vertical or horizontal (v or h): ')
-            if direction == 'v':
-                is_vertical = False
-                player.add_ship(set_positions_on_board(), size, is_horizontal)
-            elif direction == 'h':
-                is_vertical = True
-                player.add_ship(set_positions_on_board(), size, is_horizontal)
-            else:
+            direction = input('What direction vertical or horizontal (v or h)')
+            if direction not in 'vh':
                 print('Wrong input')
+                continue
+            elif direction == 'v':
+                is_vertical = True
+            elif direction == 'h':
+                is_vertical = False
+            player.add_ship(set_positions_on_board(), size, is_vertical)
+            del ships[choose_ship]
         else:
             print("There is no such a ship")
 
@@ -65,18 +65,19 @@ def set_positions_on_board():
     letters = {'A': 0, 'B': 1, 'C': 2, 'D': 3,
                'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9}
     while True:
-       coordinate_x_y = input("Enter coordinates (a1): ")
-       try:
-           coordinate_x, coordinate_y = coordinate_x_y[0].upper(), int(coordinate_x_y[1])
-       except ValueError:
-           print(error_message)
-       except IndexError:
-           print(error_message)
-       if coordinate_x in letters.keys() and coordinate_y in range(0, 10):
-           target = ((letters[coordinate_x]), coordinate_y)
-           return target
-       else:
-           print(error_message)
+        try:
+            coordinate_x_y = input("Enter coordinates (a1): ")
+            if len(coordinate_x_y) > 2:
+                print(error_message)
+                coordinate_x, coordinate_y = coordinate_x_y[0].upper(), int(coordinate_x_y[1])
+                if coordinate_x in letters.keys() and coordinate_y in range(0, 10):
+                    target = ((letters[coordinate_x]), coordinate_y)
+                    return target
+                else:
+                    print(error_message)
+        except ValueError:
+            print(error_message)
+
 
 
 def change_turns(player):
