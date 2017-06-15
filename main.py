@@ -1,6 +1,5 @@
 from squares import Square
 from ocean import Ocean
-from ships import Ship
 from player import Player
 import os
 import sys
@@ -42,10 +41,10 @@ def choose_all_ships(player):
             if direction not in 'vh':
                 print('Wrong input')
                 continue
-            elif direction == 'v':
-                is_horizontal = False
             elif direction == 'h':
                 is_horizontal = True
+            elif direction == 'v':
+                is_horizontal = False
 
             target = set_positions_on_board()
             check = player.check_position(target, size, is_horizontal)
@@ -54,7 +53,8 @@ def choose_all_ships(player):
             if check == True:
                 player.add_ship(target, size, is_horizontal)
             else:
-                print('Dupa')
+                print('dupa')
+                continue
 
 
 def set_positions_on_board():
