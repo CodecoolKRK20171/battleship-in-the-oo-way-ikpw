@@ -19,8 +19,8 @@ def choose_all_ships(player):
     None
     """
 
-    ships = {"Carrier": 5,
-            "Battleship": 4}
+    ships = {"Carrier": 5}
+            #"Battleship": 4}
             #"Cruiser": 3,
             #"Submarine": 3,
             #"Destroyer": 2}
@@ -37,6 +37,7 @@ def choose_all_ships(player):
             direction = input('What direction vertical or horizontal (v or h)')
             if direction not in 'vh':
                 print('Wrong input')
+                continue
             elif direction == 'v':
                 is_horizontal = False
             elif direction == 'h':
@@ -97,8 +98,6 @@ def change_turns(player):
     """
 
     player.attack_position(set_positions_on_board())
-    print("Your board")
-    print(player.ocean)
     print("Enemy board")
     print(player.enemy_ocean)
 
