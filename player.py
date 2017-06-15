@@ -29,7 +29,33 @@ class Player:
             self.enemy_ocean.board[positions[0]][positions[1]].fill_square()
 
 
-    def add_ship(self, positions, size, is_vertical):
+    def add_squares_around_horizontal(self, square_around_list, positions, size, is_horizontal):
+
+        for i in range(size):
+           self.ocean.board[positions[1]][positions[0]+i].set_as_ship()
+
+           for element in square_around_list:
+               x = positions[1]+ element[0]
+               y = positions[0] + element[1] + i
+
+               if x in range(0, 10) and y in range(0, 10):
+                   self.ocean.board[x][y].water()
+
+    def add_squares_around_vertical(self, square_around_list, positions, size, is_horizontal):
+
+        for i in range(size):
+           self.ocean.board[positions[1]+i][positions[0]].set_as_ship()
+
+
+           for element in square_around_list:
+               x = positions[0] + element[0] + i
+               y = positions[1] + element[1]
+
+               if x in range(0, 10) and y in range(0, 10):
+                   self.ocean.board[x][y].water()
+
+
+    def add_ship(self, positions, size, is_horizontal):
 
         """
         Method adds ships to the board.
@@ -45,45 +71,13 @@ class Player:
         None
         """
 
-        try:
-            for i in range(size):
-                if not is_vertical:
-                    #self.valid_position(size, positions, is_vertical)
-                    self.ocean.board[positions[0]][positions[1] + i].set_as_ship()
-                else:
-                    #self.valid_position(size, positions, is_vertical)
-                    self.ocean.board[positions[0] + i][positions[1]].set_as_ship()
+        positions_around_ship = [[-1, 1],[0, 1],[1, 1],[1, 0],[1, -1],[0, -1],[-1, -1],[-1, 0]]
 
-        except IndexError:
-            print("Wrong coordinates!")
-
-
-    def valid_position(self, size, coordinates, is_vertical):
-
-        """
-        Method checks that the ship can be placed on the board.
-
-        Parameters
-        ----------
-        size: lenght of ship
-        coordinates: ship coords
-        is_vertical: arrangement of the ship
-
-        Returns
-        ---------
-        None
-        """
-
-        max_postion = 10
-
-        if is_vertical:
-            if coordinates[0] + size >= max_postion:
-                raise KeyError
+        if is_horizontal:
+            self.add_squares_around_horizontal(positions_around_ship, positions, size, is_horizontal)
         else:
-            if coordinates[1] + size >= max_postion:
-                raise KeyError
+            self.add_squares_around_vertical(positions_around_ship, positions, size, is_horizontal)
 
 
-
-    def win_lose(self):
+    def is_win(self):
         pass

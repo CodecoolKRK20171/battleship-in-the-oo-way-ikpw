@@ -10,6 +10,9 @@ class Square:
     def fill_square(self):
         self.is_water = False
 
+    def water(self):
+        self.is_water = True
+
     def set_as_ship(self):
         self.is_ship = True
 
