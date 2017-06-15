@@ -7,56 +7,59 @@ import sys
 
 
 def choose_all_ships(player):
+    """
+    Function takes all neccesary information from player to place his ships
 
-    ships = {"Carrier": 5,
+    Parameters
+    ----------
+    player: actual player
+
+    Returns
+    -------
+    None
+    """
+
+    ships = {"Carrier": 5}
             "Battleship": 4,
             "Cruiser": 3,
             "Submarine": 3,
             "Destroyer": 2}
 
-    ships_list = ['Carrier']#, 'Battleship', 'Cruiser', 'Submarine', 'Destroyer']
-    while len(ships_list) > 0:
+    while len(ships.keys()) > 0:
+        os.system('clear')
+        print(player.ocean)
         print("Ships left for {}: ".format(player.name))
-        for ship in ships_list:
-            print(ship)
+        for key, value in ships.items():
+            print(key, value)
         choose_ship = input("Choose ship: ")
-        if choose_ship in ships_list:
-            ships_list.remove(choose_ship)
+        if choose_ship in ships.keys():
             size = ships[choose_ship]
+            del ships[choose_ship]
             direction = input('What direction vertical or horizontal (v or h)')
             if direction == 'v':
                 is_vertical = True
-                player.add_ship(positions_on_board(), size, is_vertical)
+                player.add_ship(set_positions_on_board(), size, is_vertical)
             elif direction == 'h':
                 is_vertical = False
-                player.add_ship(positions_on_board(), size, is_vertical)
+                player.add_ship(set_positions_on_board(), size, is_vertical)
             else:
                 print('Wrong input')
-
         else:
             print("There is no such a ship")
 
 
-def main_menu(player1, player2):
+def set_positions_on_board():
+    """
+    function takes coordinates from player
 
-   print('''
-         (1) Start game
-         (0) Exit game
-           ''')
+    Parameters
+    ----------
+    None
 
-   while True:
-       choose = input("Enter action")
-       if choose == '1':
-           choose_all_ships(player1)
-           choose_all_ships(player2)
-           break
-       elif choose == '0':
-           sys.exit()
-       elif choose.isalpha():
-           raise ValueError
-
-
-def positions_on_board():
+    Returns
+    -------
+    None
+    """
 
     error_message = "Wrong coordinates"
     letters = {'A': 0, 'B': 1, 'C': 2, 'D': 3,
@@ -75,16 +78,47 @@ def positions_on_board():
        else:
            print(error_message)
 
-def print_boards(ocean1, ocean2):
-    print("Your board\n")
-    print(ocean1)
-    print("Enemy board\n")
-    print(ocean2)
+
+def change_turns(player1, player2):
+    """
+    Function that change turns of game from player one to player two
+
+    Parameters
+    ----------
+    player1: object with firs player data
+    player2: object with second player data
+
+    Returns
+    -------
+    None
+    """
+
+    while True:
+        print("Player1 turn")
+        player1.attack_position(set_positions_on_board())
+        print(player1.name, "board")
+        print(player1.ocean)
+        print(player1.enemy_ocean)
+        print(player2.name, "board")
+        print(player2.ocean)
+        print(player2.enemy_ocean)
+
+        print("Player2 turn")
+        player2.attack_position(set_positions_on_board())
+        print(player1.name, "board")
+        print(player1.ocean)
+        print(player1.enemy_ocean)
+        print(player2.name, "board")
+        print(player2.ocean)
+        print(player2.enemy_ocean)
 
 
-def ask_name():
 
-    name = input("Enter name: ")
+
+def ask_name(player):
+    """Function asks for nickname of the player"""
+
+    name = input("Enter nickname {}: ".format(player))
     return name
 
 def main():
@@ -94,12 +128,15 @@ def main():
     ocean2 = Ocean()
     ocean1.format_board()
     ocean2.format_board()
-    player1 = Player(ask_name(), ocean1, ocean2)
-    player2 = Player("Janusz", ocean2, ocean1)
-    main_menu(player1, player2)
-    while True:
-        print_boards(ocean1, ocean2)
-        player1.attack_position(positions_on_board())
+    player1 = Player(ask_name('player1'), ocean1, ocean2)
+    player2 = Player(ask_name('player2'), ocean2, ocean1)
+    player = 1
+    choose_all_ships(player1)
+    choose_all_ships(player2)
+
+    change_turns(player1, player2)
+
+
 
 
 if __name__ == "__main__":
