@@ -26,26 +26,37 @@ def choose_all_ships(player):
             #"Destroyer": 2}
 
     while len(ships.keys()) > 0:
+
+        check = True
         os.system('clear')
-        print(player.ocean)
+        # print(player.ocean)
         print("Ships left for {}: ".format(player.name))
+
         for key, value in ships.items():
             print(key, value)
-        choose_ship = input("Choose ship: ")
-        if choose_ship in ships.keys():
-            size = ships[choose_ship]
-            direction = input('What direction vertical or horizontal (v or h)')
+        choice_ship = input("Choice ship: ")
+
+        if choice_ship in ships.keys():
+            size = ships[choice_ship]
+            direction = input('What direction vertical or horizontal (v or h): ')
+
             if direction not in 'vh':
                 print('Wrong input')
+                continue
+
             elif direction == 'v':
                 is_horizontal = False
             elif direction == 'h':
                 is_horizontal = True
-            player.add_ship(set_positions_on_board(), size, is_horizontal)
-            del ships[choose_ship]
-        else:
-            print("There is no such a ship")
 
+            target = set_positions_on_board()
+            check = player.check_position(target, size, is_horizontal)
+            del ships[choice_ship]
+
+            if check == True:
+                player.add_ship(target, size, is_horizontal)
+            else:
+                print('Dupa')
 
 def set_positions_on_board():
     """
