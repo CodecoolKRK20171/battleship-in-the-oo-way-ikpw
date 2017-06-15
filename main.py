@@ -38,10 +38,10 @@ def choose_all_ships(player):
             if direction not in 'vh':
                 print('Wrong input')
             elif direction == 'v':
-                is_vertical = True
+                is_horizontal = False
             elif direction == 'h':
-                is_vertical = False
-            player.add_ship(set_positions_on_board(), size, is_vertical)
+                is_horizontal = True
+            player.add_ship(set_positions_on_board(), size, is_horizontal)
             del ships[choose_ship]
         else:
             print("There is no such a ship")
