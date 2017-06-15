@@ -37,7 +37,6 @@ def choose_all_ships(player):
             direction = input('What direction vertical or horizontal (v or h)')
             if direction not in 'vh':
                 print('Wrong input')
-                continue
             elif direction == 'v':
                 is_vertical = True
             elif direction == 'h':
@@ -65,18 +64,22 @@ def set_positions_on_board():
     letters = {'A': 0, 'B': 1, 'C': 2, 'D': 3,
                'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9}
     while True:
-        try:
-            coordinate_x_y = input("Enter coordinates (a1): ")
-            if len(coordinate_x_y) > 2:
-                print(error_message)
-                coordinate_x, coordinate_y = coordinate_x_y[0].upper(), int(coordinate_x_y[1])
-                if coordinate_x in letters.keys() and coordinate_y in range(0, 10):
-                    target = ((letters[coordinate_x]), coordinate_y)
-                    return target
-                else:
-                    print(error_message)
-        except ValueError:
-            print(error_message)
+       coordinate_x_y = input("Enter coordinates (a1): ")
+       if len(coordinate_x_y) > 2:
+           print(error_message)
+           continue
+       try:
+           coordinate_x, coordinate_y = coordinate_x_y[0].upper(), int(coordinate_x_y[1])
+           if coordinate_x in letters.keys() and coordinate_y in range(0, 10):
+               target = ((letters[coordinate_x]), coordinate_y)
+               return target
+           else:
+               print(error_message)
+       except ValueError:
+           print(error_message)
+           continue
+       except IndexError:
+           continue
 
 
 
