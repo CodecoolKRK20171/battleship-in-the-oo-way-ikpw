@@ -1,4 +1,3 @@
-from ships import Ship
 from squares import Square
 
 
@@ -29,5 +28,3 @@ class Ocean:
             for j in range(0, 10):
                 self.board[i].append(Square(i, j))
             self.board[i].append("\n")
-
-        self.second_board = self.board[:]

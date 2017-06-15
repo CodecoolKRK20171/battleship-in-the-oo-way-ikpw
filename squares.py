@@ -28,8 +28,6 @@ class Square:
         else:
             if self.is_ship:
                 mark = 'X'
-            elif self.is_water:
-                mark = ' '
             else:
                 mark = '0'
 

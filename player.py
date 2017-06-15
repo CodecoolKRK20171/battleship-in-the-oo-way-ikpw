@@ -20,11 +20,15 @@ class Player:
         positions: attack positions on the ship
 
         Returns
-        ---------
+        -------
         None
         """
 
         self.enemy_ocean.board[positions[0]][positions[1]].fill_square()
+        if self.enemy_ocean.board[positions[0]][positions[1]].is_ship:
+            print("HIT")
+        else:
+            print("MISS")
 
 
 
@@ -118,9 +122,9 @@ class Player:
                     if self.ocean.board[x][y].is_water:
                         return False
 
-                    else:
-                        return False
-                return True
+                else:
+                    return False
+            return True
 
         else:
             for i in range(size):
@@ -131,23 +135,9 @@ class Player:
                     if self.ocean.board[x][y].is_water:
                         return False
 
-                    else:
-                        return False
-                return True
-
-    # def frame_make(self, positions):
-    #
-    #     frame = []
-    #     for position in positions:
-    #         for x in range(-1, 2):
-    #             for y in range(-1, 2):
-    #                 add_block = (position[0] + x, position[1] + y)
-    #                 if add_block not in frame and add_block not in positions:
-    #                     frame.append(add_block)
-    #
-    #     return frame
-
-
+                else:
+                    return False
+            return True
 
 
     def is_win(self):
