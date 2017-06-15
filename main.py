@@ -35,13 +35,13 @@ def choose_all_ships(player):
         if choose_ship in ships.keys():
             size = ships[choose_ship]
             del ships[choose_ship]
-            direction = input('What direction vertical or horizontal (v or h)')
+            direction = input('What direction vertical or horizontal (v or h): ')
             if direction == 'v':
-                is_vertical = True
-                player.add_ship(set_positions_on_board(), size, is_vertical)
-            elif direction == 'h':
                 is_vertical = False
-                player.add_ship(set_positions_on_board(), size, is_vertical)
+                player.add_ship(set_positions_on_board(), size, is_horizontal)
+            elif direction == 'h':
+                is_vertical = True
+                player.add_ship(set_positions_on_board(), size, is_horizontal)
             else:
                 print('Wrong input')
         else:
