@@ -31,6 +31,21 @@ class Player:
 
     def add_squares_around_horizontal(self, square_around_list, positions, size, is_horizontal):
 
+        """
+        Method adds squares around ship
+
+        Parameters
+        ----------
+        size: lenght of ship
+        coordinates: ship coords
+        is_vertical: arrangement of the ship
+
+        Returns
+        ---------
+        None
+        """
+
+
         for i in range(size):
            self.ocean.board[positions[1]][positions[0]+i].set_as_ship()
 
@@ -77,6 +92,50 @@ class Player:
             self.add_squares_around_horizontal(positions_around_ship, positions, size, is_horizontal)
         else:
             self.add_squares_around_vertical(positions_around_ship, positions, size, is_horizontal)
+
+
+    def check_position(self, positions, size, is_horizontal):
+
+        """
+        Method checks that the ship can be placed on the board.
+
+        Parameters
+        ----------
+        size: lenght of ship
+        coordinates: ship coords
+        is_vertical: arrangement of the ship
+
+        Returns
+        ---------
+        None
+        """
+
+        if is_horizontal:
+            for i in range(size):
+                x = positions[1]
+                y = positions[0] + i
+
+                if x in range(0, 10) and y in range(0, 10):
+                    if self.ocean.board[x][y].is_water:
+                        return False
+
+                    else:
+                        return False
+                return True
+
+        else:
+            for i in range(size):
+                x = positions[1] + i
+                y = positions[0]
+
+                if x in range(0, 10) and y in range(0, 10):
+                    if self.ocean.board[x][y].is_water:
+                        return False
+
+                    else:
+                        return False
+
+                return True
 
 
     def is_win(self):
