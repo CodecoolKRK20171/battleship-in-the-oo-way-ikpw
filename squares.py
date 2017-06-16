@@ -43,7 +43,6 @@ class Square:
         """
         self.is_ship = True
 
-
     def __str__(self):
 
         """

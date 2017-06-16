@@ -56,6 +56,7 @@ def choose_all_ships(player, ocean):
 
             if check == True:
                 player.add_ship(target, size, is_horizontal)
+                print(ocean)
             else:
                 print('This is wrong coord')
                 continue
@@ -78,7 +79,6 @@ def set_positions_on_board():
     letters = {'A': 0, 'B': 1, 'C': 2, 'D': 3,
                'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9}
     while True:
-
         coordinate_x_y = input("Enter coordinates (a1): ")
         if len(coordinate_x_y) > 2:
             print(error_message)
@@ -95,7 +95,6 @@ def set_positions_on_board():
             continue
         except IndexError:
             continue
-
 
 
 def change_turns(player):
@@ -144,4 +143,4 @@ def main():
 
 
 if __name__ == "__main__":
-   main()
+    main()
