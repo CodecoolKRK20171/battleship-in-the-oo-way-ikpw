@@ -49,27 +49,41 @@ class Player:
 
 
         for i in range(size):
-           self.ocean.board[positions[1]][positions[0]+i].set_as_ship()
+            self.ocean.board[positions[1]][positions[0]+i].set_as_ship()
 
-           for element in square_around_list:
-               x = positions[1]+ element[0]
-               y = positions[0] + element[1] + i
+            for element in square_around_list:
+                x = positions[1]+ element[0]
+                y = positions[0] + element[1] + i
 
-               if x in range(0, 10) and y in range(0, 10):
-                   self.ocean.board[x][y].water()
+                if x in range(0, 10) and y in range(0, 10):
+                    self.ocean.board[x][y].water()
 
     def add_squares_around_vertical(self, square_around_list, positions, size, is_horizontal):
 
+        """
+        Method adds squares around ship
+
+        Parameters
+        ----------
+        size: lenght of ship
+        coordinates: ship coords
+        is_vertical: arrangement of the ship
+
+        Returns
+        ---------
+        None
+        """
+
         for i in range(size):
-           self.ocean.board[positions[1]+i][positions[0]].set_as_ship()
+            self.ocean.board[positions[1]+i][positions[0]].set_as_ship()
 
 
-           for element in square_around_list:
-               x = positions[0] + element[0] + i
-               y = positions[1] + element[1]
+            for element in square_around_list:
+                x = positions[0] + element[0] + i
+                y = positions[1] + element[1]
 
-               if x in range(0, 10) and y in range(0, 10):
-                   self.ocean.board[x][y].water()
+                if x in range(0, 10) and y in range(0, 10):
+                    self.ocean.board[x][y].water()
 
 
     def add_ship(self, positions, size, is_horizontal):

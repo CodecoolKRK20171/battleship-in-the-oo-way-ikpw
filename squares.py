@@ -9,26 +9,58 @@ class Square:
         self.is_water = False
 
     def fill_square(self):
+
+        """
+        Constructs Squares of diffrent ships
+
+        Returns
+        -------
+        None
+        """
+
         self.is_empty = False
 
     def water(self):
+
+        """
+        Constructs Squares of water
+
+        Returns
+        -------
+        None
+        """
+
         self.is_water = True
 
     def set_as_ship(self):
-        self.is_ship = True
 
-    def set_water(self):
-        self.is_water = True
+        """
+        Set is_ship to true (that marks ship as X)
+
+        Returns
+        -------
+        None
+        """
+        self.is_ship = True
 
 
     def __str__(self):
 
-        if self.is_empty:
-            mark = '~'
+        """
+        Returns formated string of one square ( x or 0)
+
+        Parameters
+        ----------
+        positions: attack positions on the ship
+
+        Returns
+        -------
+        None
+        """
+
+        if self.is_ship:
+            mark = 'X'
         else:
-            if self.is_ship:
-                mark = 'X'
-            else:
-                mark = '0'
+            mark = '0'
 
         return mark
