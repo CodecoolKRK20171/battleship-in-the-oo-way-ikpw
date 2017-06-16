@@ -16,7 +16,6 @@ class Ocean:
 
         return ocean
 
-
     def format_board(self):
         """
         Method that format board to have 10 lists with Square object as items

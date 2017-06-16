@@ -1,6 +1,5 @@
 class Ship:
 
-
     def __init__(self, positions, name, is_vertical):
 
         self.name = name

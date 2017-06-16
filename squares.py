@@ -20,7 +20,6 @@ class Square:
     def set_water(self):
         self.is_water = True
 
-
     def __str__(self):
 
         if self.is_empty:
